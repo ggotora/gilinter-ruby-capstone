@@ -1,4 +1,3 @@
-
 def check_file(file_name)
   file = File.open(file_name)
   line_num = 0

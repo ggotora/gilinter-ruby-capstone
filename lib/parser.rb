@@ -6,10 +6,10 @@ class Parser
   end
 
   def lines
-    File.open(@file_path).each { |line| @line_arr << line}
+    File.open(@file_path).each { |line| @line_arr << line }
     @line_arr
   end
-  
+
   def length_error?(line)
     @errors['length_error'] += 1 if line.size > 80
     @errors
