@@ -47,7 +47,7 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is open-licensed.
+This project is [MIT](LICENSE) licensed.
 
 ## 📝 Credits
 
