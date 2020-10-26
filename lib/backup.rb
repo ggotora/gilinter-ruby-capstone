@@ -1,38 +1,30 @@
-class TestData
-  def initialize(file)
-    @file = file
+class ReadFile
+  def initialize(path)
+    @path = path
   end
 
-  def open_file
-    File.open(@file)
+  def line
+    File.open(@path, 'r') do |file|
+      file.readline
+    end
   end
 
-  def read_file
-    open_file.read
+  def line_length_error?
+    @errors['line_length_errors'] += 1 if line.length > 80
+    @errors
   end
 
-  def close_file
-    open_file.close
+  def comparison_error?
+    @errors['comparison'] += 1 if line.include? '=='
+    @errors
   end
-end
-
-class Errors
-  attr_reader :tags
-
-  def initialize(file)
-    require 'strscan'
-    @file = TestData.new(file)
-    test_data = @file.read_file
-    @buffer = StringScanner.new(test_data)
-    @errors = Hash.new(0)
-    # parse
+  def all_test
+    File.open(@path, 'r') do
+      line_length_error?
+    end
   end
-  
-
-  def space
     
-      @errors['indent_error'] += 1 if @buffer.scan(/^\s/)
-      puts @errors
-   
-  end
 end
+
+run = ReadFile.new('test_data/bad_js.js')
+puts run.all_test

@@ -1,56 +1,57 @@
-require 'strscan'
-
 class Parser
   def initialize(file_path)
-    @file = File.open(file_path)
-    # test_data = @file.readline
-    # @buffer = StringScanner.new(test_data)
+    @file_path = file_path
     @errors = Hash.new(0)
+    @line_arr = []
   end
 
-  def line
-    @file.gets
+  def lines
+    File.open(@file_path).each { |line| @line_arr << line}
+    @line_arr
   end
-
-  def line_length_error?
-    @errors['line_length_errors'] += 1 if line.length > 80
+  
+  def length_error?(line)
+    @errors['length_error'] += 1 if line.size > 80
     @errors
   end
 
-  def string_declaration_error?
-    @errors['string_declaration_errors'] += 1 if line =~ /new String()/
+  def comparison_error?(line)
+    @errors['comparison'] += 1 if line.include? '=='
     @errors
   end
 
-  def number_declaration_error?
-    @errors['number_declaration_errors'] += 1  if line =~ /new Number()/
+  def string_declaration_error?(line)
+    @errors['string_declaration_error'] += 1 if line.include? 'new String'
     @errors
   end
 
-  # def number_declaration_error?
-  #   @errors['number_declaration_errors'] += 1 if (line =~ /new Number/).instance_of? Integer
-  #   @errors
-  # end
-
-  def indent_error?
-    @errors['indent_errors'] += 1 if @buffer.peek(1) == ' '
+  def object_declaration_error?(line)
+    @errors['object_declaration_error'] += 1 if line.include? 'new Object'
     @errors
   end
-   
-  def check_all_lines
-    line_num = 0
-    until @file.eof?
-      line_length_error?
-      string_declaration_error?
-      number_declaration_error?
-      puts line_num
-      line_num += 1
+
+  def number_declaration_error?(line)
+    @errors['number_declaration_error'] += 1 if line.include? 'new Number'
+    @errors
+  end
+
+  def function_declaration_error?(line)
+    @errors['function_declaration_error'] += 1 if line.include? 'new Function'
+    @errors
+  end
+
+  def all_tests
+    lines.each do |line|
+      function_declaration_error?(line)
+      length_error?(line)
+      comparison_error?(line)
+      string_declaration_error?(line)
+      number_declaration_error?(line)
+      object_declaration_error?(line)
     end
-    puts @errors
+    @errors
   end
 end
 
 run = Parser.new('test_data/bad_js.js')
-puts run.check_all_lines
-
-
+run.all_tests
