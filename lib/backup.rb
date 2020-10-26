@@ -4,9 +4,7 @@ class ReadFile
   end
 
   def line
-    File.open(@path, 'r') do |file|
-      file.readline
-    end
+    File.open(@path, 'r', &:readline)
   end
 
   def line_length_error?
