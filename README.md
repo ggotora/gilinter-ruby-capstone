@@ -13,22 +13,22 @@
 
 
 # Screenshot
-![screenshot](rspec.png)
+![screenshot](ruby_capstone.png)
 
 ## Built With
 
-- Ruby1 (version <= 2.7.0p0)
+- Ruby (version <= 2.7.0)
 
 ## Live Demo
 
-[Live Demo Link](https://repl.it/@GilbertGotora/ruby-tic-tac-toe)
+[Live Demo Link](https://repl.it/@GilbertGotora/gilinter-ruby-capstone#README.md)
 
 ## Author
 
 👤 Gilbert Gotora
 
 - Github: [@ggotora](https://github.com/ggotora)
-- Linkedin: [@gilbert_gotora/](https://www.linkedin.com/in/gilbert-gotora/)
+- Linkedin: [@gilbert_gotora/](https://www.linkedin.com/in/gilbert-gotora)
 
 ## 🤝 Contributing
 
