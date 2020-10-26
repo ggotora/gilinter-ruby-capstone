@@ -13,3 +13,5 @@ console.log(4 == 7)
 var x = new String("John");      
 
 var y = new String('Gil')
+
+let z = new Number()

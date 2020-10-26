@@ -12,21 +12,12 @@ class Parser
     @file.gets.chomp
   end
 
-  def line_length_error?(line)
+  def line_length_error?
     # p"#{line} = #{line.length}"
     @errors['line_length_errors'] += 1 if line.length > 80
     @errors
   end
 
-  def declaration_error?
-    @buffer.exist? //
-    # File.open('test_data/bad_js.js') do |file|
-    #   x = file.read
-    #   @errors['string_declaration_error'] if x.include?('new String') 
-    #     puts " RRRR = #{@errors}"
-    # end
-  
-  end
 
   def indent_error?
     @errors['indent_errors'] += 1 if @buffer.peek(1) == ' '
@@ -37,12 +28,13 @@ class Parser
     line_num = 0
     until @file.eof?
       declaration_error?
-      line_length_error?(line)
-     
+      line_length_error?
+      string_declaration_error?
       indent_error?
       line_num += 1
     end
     puts @errors
+    file.close()
   end
 end
 

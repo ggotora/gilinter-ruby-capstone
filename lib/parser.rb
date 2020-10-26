@@ -3,8 +3,8 @@ require 'strscan'
 class Parser
   def initialize(file_path)
     @file = File.open(file_path)
-    test_data = @file.readline
-    @buffer = StringScanner.new(test_data)
+    # test_data = @file.readline
+    # @buffer = StringScanner.new(test_data)
     @errors = Hash.new(0)
   end
 
@@ -17,23 +17,33 @@ class Parser
     @errors
   end
 
-  def declaration_error?
-    x = line =~ /new String/
-    puts @errors['string_declaration_errors'] += 1 if x.instance_of? Integer
-    puts @errors
+  def string_declaration_error?
+    @errors['string_declaration_errors'] += 1 if line =~ /new String()/
+    @errors
   end
+
+  def number_declaration_error?
+    @errors['number_declaration_errors'] += 1  if line =~ /new Number()/
+    @errors
+  end
+
+  # def number_declaration_error?
+  #   @errors['number_declaration_errors'] += 1 if (line =~ /new Number/).instance_of? Integer
+  #   @errors
+  # end
 
   def indent_error?
     @errors['indent_errors'] += 1 if @buffer.peek(1) == ' '
     @errors
   end
-
+   
   def check_all_lines
     line_num = 0
     until @file.eof?
       line_length_error?
-      declaration_error?
-      indent_error?
+      string_declaration_error?
+      number_declaration_error?
+      puts line_num
       line_num += 1
     end
     puts @errors
