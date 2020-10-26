@@ -14,10 +14,13 @@ class Tests
   def error_messages
     err_hash = @run.all_tests
     total_errors = err_hash.values.inject(:+)
+    puts 
     puts("#{total_errors} offenses detected".colorize(:red))
-    puts(err_hash.map { |k, v| "#{v} : #{k}".colorize(color: :yellow, background: :black) })
+    puts 
+    puts(err_hash.map { |k, v| "#{v} : #{k}".colorize(:yellow) })
+    puts 
   end
 end
 
-test = Tests.new('test_data/bad_js.js')
-test.error_messages
+# test = Tests.new('test_data/bad_js.js')
+# test.error_messages
