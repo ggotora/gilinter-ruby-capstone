@@ -1,6 +1,53 @@
 require 'strscan'
 
-s = StringScanner.new(' test string')
-puts s.peek(1)          # => "test st"
-puts s.peek(7)          # => "test st"
+class Parser
+  def initialize(file_path)
+    @file = File.open(file_path)
+    test_data = @file.readline
+    @buffer = StringScanner.new(test_data)
+    @errors = Hash.new(0)
+  end
+
+  def line
+    @file.gets.chomp
+  end
+
+  def line_length_error?(line)
+    # p"#{line} = #{line.length}"
+    @errors['line_length_errors'] += 1 if line.length > 80
+    @errors
+  end
+
+  def declaration_error?
+    @buffer.exist? //
+    # File.open('test_data/bad_js.js') do |file|
+    #   x = file.read
+    #   @errors['string_declaration_error'] if x.include?('new String') 
+    #     puts " RRRR = #{@errors}"
+    # end
+  
+  end
+
+  def indent_error?
+    @errors['indent_errors'] += 1 if @buffer.peek(1) == ' '
+    @errors
+  end
+
+  def check_all_lines
+    line_num = 0
+    until @file.eof?
+      declaration_error?
+      line_length_error?(line)
+     
+      indent_error?
+      line_num += 1
+    end
+    puts @errors
+  end
+end
+
+run = Parser.new('test_data/bad_js.js')
+# run.check_all_lines
+puts run.check_all_lines
+puts run.declaration_error?
 
