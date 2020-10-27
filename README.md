@@ -1,5 +1,7 @@
-# gilinter-ruby-capstone
-> In this project, I was required to build my own linter that can make life easier for a developer 
+# Gilinter - A Microverse Ruby Capstone Project
+> In this project, I was required to build my own linter that can make life easier for a developer
+
+> I decided to implement a JavaScript Linter that utilises JavaScript Best Practices documented on w3schools website https://www.w3schools.com/js/js_best_practices.asp
 
 
 # Project Specifications
