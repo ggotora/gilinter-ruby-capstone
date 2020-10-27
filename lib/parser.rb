@@ -53,5 +53,3 @@ class Parser
   end
 end
 
-run = Parser.new('test_data/bad_js.js')
-run.all_tests
