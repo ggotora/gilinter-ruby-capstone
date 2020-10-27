@@ -1,7 +1,7 @@
 # Gilinter - A Microverse Ruby Capstone Project
 > In this project, I was required to build my own linter that can make life easier for a developer
 
-> I decided to implement a JavaScript Linter that utilises JavaScript Best Practices documented on w3schools website https://www.w3schools.com/js/js_best_practices.asp
+> I decided to implement a JavaScript Linter that utilises JavaScript Best Practices as documented on w3schools website https://www.w3schools.com/js/js_best_practices.asp
 
 
 # Project Specifications
@@ -12,6 +12,11 @@
 - Download or clone the repository's files github repo
 - Have Ruby 2.7 installed (to check if it is installed you can run: ruby -version in your console)
 - Once repo is downloaded to local directory, in you console run cmd: ruby ./bin/main.rb
+# Dependancies 
+- the project includes the Ruby gem "colorize" for colorizing text using ANSI escape sequences. 
+## To Install
+- open command prompt
+- gem install colorize
 
 
 # Screenshot
@@ -30,13 +35,13 @@
 👤 Gilbert Gotora
 
 - Github: [@ggotora](https://github.com/ggotora)
-- Linkedin: [@gilbert_gotora/](https://www.linkedin.com/in/gilbert-gotora)
+- Linkedin: [@gilbert_gotora](https://www.linkedin.com/in/gilbert-gotora)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/ggotora/gilinter-ruby-capstone/issues).
 
 # Show your support
 
