@@ -53,5 +53,4 @@ class Parser
   end
 end
 
-p = Parser.new('test_data/bad_js.js')
-puts p.string_declaration_error("d = new String")
+

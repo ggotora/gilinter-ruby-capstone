@@ -1,3 +1,4 @@
+# rubocop: disable Metrics/CyclomaticComplexity
 require 'colorize'
 
 require_relative 'parser'
@@ -42,3 +43,5 @@ class Tests
     puts
   end
 end
+
+# rubocop: enable Metrics/CyclomaticComplexity
