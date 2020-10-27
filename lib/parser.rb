@@ -52,5 +52,3 @@ class Parser
     @errors
   end
 end
-
-
